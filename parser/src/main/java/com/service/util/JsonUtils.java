@@ -8,17 +8,16 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Objects;
 
 @UtilityClass
 public class JsonUtils {
 
     public static String readJsonFromFile(String fileName) throws IOException {
-        FileReader fileReader = new FileReader(new File(fileName));
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ClassLoader classLoader = JsonUtils.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
 
         StringBuilder jsonBuilder = new StringBuilder();
         String line;

@@ -27,8 +27,8 @@ public class Main {
     }};
 
     private static Map<Format, String> formatFileMap = new HashMap<>() {{
-        put(NEWSAPI, "files/newsapi.json");
-        put(SIMPLE, "files/simple.json");
+        put(SIMPLE, "simple.json");
+        put(NEWSAPI, "newsapi.json");
     }};
 
     /**
@@ -37,17 +37,19 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
 
+        // Retrieving json from url
         for (Map.Entry<Format, String> urlEntrySet: formatUrlMap.entrySet()) {
             LOGGER.info("Parsing articles using provided location " + urlEntrySet.getValue() + "\n\n");
-            ProcessorImpl processorFacade = new ProcessorImpl(URL, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
-            List<Article> articles = processorFacade.process();
+            ProcessorImpl processor = new ProcessorImpl(URL, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
+            List<Article> articles = processor.process();
             printResults(articles, urlEntrySet.getValue());
         }
 
+        // Retrieving json from files
         for (Map.Entry<Format, String> urlEntrySet: formatFileMap.entrySet()) {
             LOGGER.info("Parsing articles using provided location " + urlEntrySet.getValue() + "\n\n");
-            ProcessorImpl processorFacade = new ProcessorImpl(FILE, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
-            List<Article> articles = processorFacade.process();
+            ProcessorImpl processor = new ProcessorImpl(FILE, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
+            List<Article> articles = processor.process();
             printResults(articles, urlEntrySet.getValue());
         }
     }
