@@ -20,7 +20,6 @@ import static com.service.source.Source.FILE;
 import static com.service.source.Source.URL;
 import static org.powermock.api.mockito.PowerMockito.spy;
 
-
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ProcessorImpl.class)
 public class ProcessorImplTest {

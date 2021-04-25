@@ -29,7 +29,6 @@ public class ParserImpl implements Parser {
      * In case of valid article log level is INFO. In case of invalid article log level is WARN.
      * Result list consists only from valid articles and invalid articles are excluded
      *
-     * @param .... TODO
      * @return list of valid articles
      */
     @Override
@@ -68,7 +67,6 @@ public class ParserImpl implements Parser {
         }
     }
 
-    // TODO could this be simplied
     private static NewsApiModel readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);

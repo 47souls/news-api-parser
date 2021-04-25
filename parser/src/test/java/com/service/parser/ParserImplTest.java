@@ -1,8 +1,11 @@
 package com.service.parser;
 
+import com.service.processor.ProcessorImpl;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(JUnit4.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(ProcessorImpl.class)
 public class ParserImplTest {
 }
