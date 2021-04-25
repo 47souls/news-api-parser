@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewsApiModel {
+
     private final String status;
     private final int totalResults;
     private final List<Article> articles;

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Article {
+
     private final String title;
     private final String description;
     private final String url;

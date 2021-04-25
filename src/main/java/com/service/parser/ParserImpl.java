@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.model.Article;
 import com.service.model.NewsApiModel;
 import com.service.source.Format;
-import lombok.Data;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Collections;
@@ -17,17 +15,11 @@ import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@Data
 @RequiredArgsConstructor
 public class ParserImpl implements Parser {
 
-    @NonNull
     private final Logger logger;
-
-    @NonNull
     private final String articlesJson;
-
-    @NonNull
     private final Format format;
 
     /**

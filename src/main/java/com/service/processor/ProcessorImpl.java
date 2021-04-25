@@ -4,6 +4,7 @@ import com.service.model.Article;
 import com.service.parser.ParserImpl;
 import com.service.source.Format;
 import com.service.source.Source;
+import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,19 +13,13 @@ import java.util.logging.Logger;
 import static com.service.util.JsonUtils.readJsonFromFile;
 import static com.service.util.JsonUtils.readJsonFromUrl;
 
+@RequiredArgsConstructor
 public class ProcessorImpl implements Processor {
 
     private final Source source;
     private final Format format;
-    private final Logger logger;
     private final String location;
-
-    public ProcessorImpl(Source source, Format format, Logger logger, String location) {
-        this.source = source;
-        this.format = format;
-        this.logger = logger;
-        this.location = location;
-    }
+    private final Logger logger;
 
     @Override
     public List<Article> process() throws IOException {

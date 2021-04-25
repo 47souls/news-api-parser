@@ -1,8 +1,6 @@
 package com.service.validator;
 
 import com.service.model.Article;
-import lombok.Data;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -10,11 +8,9 @@ import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@Data
 @RequiredArgsConstructor
 public class ArticlesValidator {
 
-    @NonNull
     private final Logger logger;
 
     /**
@@ -27,7 +23,7 @@ public class ArticlesValidator {
      * @param articles LocalDateTime object to serialized
      * @return list of valid articles
      */
-    public List<Article> validateArticles(List<Article> articles) {
+    List<Article> validateArticles(List<Article> articles) {
         return articles.stream().filter(this::validateArticle).collect(Collectors.toList());
     }
 

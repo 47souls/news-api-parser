@@ -12,8 +12,8 @@ import java.util.Arrays;
 
 public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
 
-    private DateTimeFormatter zoneDateFormatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    private DateTimeFormatter simpleDateFormatter =  DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
+    private DateTimeFormatter zoneDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API

@@ -7,11 +7,13 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
-    private DateTimeFormatter zoneDateformatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    private DateTimeFormatter simpleDateFormatter =  DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
+    private DateTimeFormatter zoneDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API
@@ -41,6 +43,20 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
                           SerializerProvider serializerProvider) throws IOException {
 
-        jsonGenerator.writeString(zoneDateformatter.format(localDateTime));
+        String dateTime = "";
+
+        for (DateTimeFormatter dateTimeFormatter: Arrays.asList(zoneDateFormatter, simpleDateFormatter)) {
+            try {
+                dateTime = dateTimeFormatter.format(localDateTime);
+            } catch (DateTimeParseException e) {
+                // omit
+            }
+        }
+
+        if (dateTime.isEmpty()) {
+            throw new RuntimeException("Unknown format of localDateTime");
+        }
+
+        jsonGenerator.writeString(dateTime);
     }
 }
