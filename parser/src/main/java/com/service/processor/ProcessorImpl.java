@@ -29,7 +29,7 @@ public class ProcessorImpl implements Processor {
             return processFromUrl(location, format);
         }
 
-        throw new RuntimeException("Source " + source + " not supported");
+        throw new IllegalArgumentException("Source " + source + " not supported");
     }
 
     private List<Article> processFromFile(String location, Format format) throws IOException {

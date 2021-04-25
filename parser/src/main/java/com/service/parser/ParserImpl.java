@@ -43,7 +43,7 @@ public class ParserImpl implements Parser {
             Article article = readArticleModelFromJson(articlesJson);
             articles = Collections.singletonList(article);
         } else {
-            throw new RuntimeException("Format " + format + " not supported");
+            throw new IllegalArgumentException("Format " + format + " not supported");
         }
 
         return articles.stream().filter(this::parseArticle).collect(Collectors.toList());
