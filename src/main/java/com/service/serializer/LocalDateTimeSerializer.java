@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
-    private DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private DateTimeFormatter zoneDateformatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private DateTimeFormatter simpleDateFormatter =  DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API
@@ -39,6 +40,7 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
     @Override
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
                           SerializerProvider serializerProvider) throws IOException {
-        jsonGenerator.writeString(formatter.format(localDateTime));
+
+        jsonGenerator.writeString(zoneDateformatter.format(localDateTime));
     }
 }

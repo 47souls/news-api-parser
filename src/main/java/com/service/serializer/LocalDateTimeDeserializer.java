@@ -7,10 +7,13 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
 
-    private DateTimeFormatter formatter =  DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+    private DateTimeFormatter zoneDateFormatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private DateTimeFormatter simpleDateFormatter =  DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API
@@ -41,6 +44,15 @@ public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext context)
             throws IOException {
         String date = jsonParser.getText();
-        return LocalDateTime.parse(date, formatter);
+
+        for (DateTimeFormatter dateTimeFormatter: Arrays.asList(zoneDateFormatter, simpleDateFormatter)) {
+            try {
+                return LocalDateTime.parse(date, dateTimeFormatter);
+            } catch (DateTimeParseException e) {
+                // omit
+            }
+        }
+
+        return LocalDateTime.parse(date, zoneDateFormatter);
     }
 }
