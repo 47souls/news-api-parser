@@ -1,4 +1,4 @@
-package com.service.parser.serializer;
+package com.service.serializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

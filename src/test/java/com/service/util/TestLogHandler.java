@@ -1,4 +1,4 @@
-package com.service.parser.util;
+package com.service.util;
 
 import lombok.Getter;
 

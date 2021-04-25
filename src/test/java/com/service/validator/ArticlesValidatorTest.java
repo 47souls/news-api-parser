@@ -1,7 +1,7 @@
-package com.service.parser.validator;
+package com.service.validator;
 
-import com.service.parser.model.Article;
-import com.service.parser.util.TestLogHandler;
+import com.service.model.Article;
+import com.service.util.TestLogHandler;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

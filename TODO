@@ -1,0 +1,21 @@
+So
+
+
+1) Refactor current architecture
+
+processor needs source, parser
+parser needs to understand which is format
+
+2) Integration test
+
+"You will test these through both unit tests and a system test"
+
+For simple format.json
+LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]"))
+
+3) Use modularity in building a project
+
+4) Use module-level testing ??
+
+a) So module with library will have unit tests
+b) Client module with have units + integrations

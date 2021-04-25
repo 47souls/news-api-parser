@@ -1,7 +1,7 @@
-package com.service.parser;
+package com.service;
 
-import com.service.parser.api.NewsApiParser;
-import com.service.parser.model.Article;
+import com.service.parser.NewsApiParser;
+import com.service.model.Article;
 
 import java.io.BufferedReader;
 import java.io.File;

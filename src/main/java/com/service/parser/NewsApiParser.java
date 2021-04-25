@@ -1,11 +1,11 @@
-package com.service.parser.api;
+package com.service.parser;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.service.parser.model.Article;
-import com.service.parser.model.NewsApiModel;
-import com.service.parser.validator.ArticlesValidator;
+import com.service.model.Article;
+import com.service.model.NewsApiModel;
+import com.service.validator.ArticlesValidator;
 import lombok.Data;
 
 import java.io.IOException;

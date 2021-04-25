@@ -1,6 +1,6 @@
-package com.service.parser.validator;
+package com.service.validator;
 
-import com.service.parser.model.Article;
+import com.service.model.Article;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

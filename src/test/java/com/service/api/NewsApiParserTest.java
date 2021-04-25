@@ -1,9 +1,10 @@
-package com.service.parser.api;
+package com.service.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.service.parser.model.Article;
-import com.service.parser.model.NewsApiModel;
-import com.service.parser.validator.ArticlesValidator;
+import com.service.model.Article;
+import com.service.model.NewsApiModel;
+import com.service.parser.NewsApiParser;
+import com.service.validator.ArticlesValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.service.parser.model;
+package com.service.model;
 
 import org.junit.Assert;
 import org.junit.Test;

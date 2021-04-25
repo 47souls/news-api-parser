@@ -1,11 +1,11 @@
-package com.service.parser.model;
+package com.service.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.service.parser.serializer.LocalDateTimeDeserializer;
-import com.service.parser.serializer.LocalDateTimeSerializer;
+import com.service.serializer.LocalDateTimeDeserializer;
+import com.service.serializer.LocalDateTimeSerializer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
