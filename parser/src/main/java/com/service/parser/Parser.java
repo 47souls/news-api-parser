@@ -6,12 +6,15 @@ import com.service.model.Article;
 import java.util.List;
 
 /**
- * TODO
+ * Interface that defines a contract method for all Parser implementations
  */
 public interface Parser {
 
     /**
-     * TODO
+     * Performs parsing of articles. The details of parsing
+     * is up to decide for implementations
+     *
+     * @return a list of parsed articles
      */
     List<Article> parse() throws JsonProcessingException;
 }

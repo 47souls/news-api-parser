@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * TODO
+ * Interface that defines a contract method for all Processor implementations
  */
 public interface Processor {
 
     /**
-     * TODO
+     * Performs general processing of articles. The details of processing
+     * is up to decide for implementations
+     *
+     * @return a list of processed articles
      */
     List<Article> process() throws IOException;
 }

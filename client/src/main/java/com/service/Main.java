@@ -35,7 +35,7 @@ public class Main {
      * Main entry to the program. Demonstrates the ability to parse news api responses
      * @param args input arguments of the program
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         // Retrieving json from url
         for (Map.Entry<Format, String> urlEntrySet: formatUrlMap.entrySet()) {

@@ -11,7 +11,11 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 /**
- * TODO
+ * Jackson helper serializer class. Helps to convert news api model's published date
+ *
+ * @see com.service.model.Article
+ * @see StdSerializer
+ * @see DateTimeFormatter
  */
 public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 

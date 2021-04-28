@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * TODO
+ * Representation of news api model
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,7 +18,12 @@ public class NewsApiModel {
     private final List<Article> articles;
 
     /**
-     * TODO
+     * Constructor for NewsApiModel class. Includes mandatory params needed for creation
+     * of valid NewsApiModel object
+     *
+     * @param status status
+     * @param totalResults total results
+     * @param articles articles
      */
     public NewsApiModel(@JsonProperty("status") String status, @JsonProperty("totalResults") int totalResults,
                         @JsonProperty("articles") List<Article> articles) {

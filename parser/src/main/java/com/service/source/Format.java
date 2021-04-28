@@ -1,7 +1,7 @@
 package com.service.source;
 
 /**
- * Describes types of articles format supported
+ * Defines types of supported article format
  */
 public enum Format {
     NEWSAPI,

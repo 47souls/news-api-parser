@@ -14,7 +14,10 @@ import static com.service.util.JsonUtils.readJsonFromFile;
 import static com.service.util.JsonUtils.readJsonFromUrl;
 
 /**
- * TODO
+ * Implementation class that defines logic for processing articles. Processing means
+ * retrieving articles from provided source and passing those into parser
+ *
+ * @see Processor
  */
 @RequiredArgsConstructor
 public class ProcessorImpl implements Processor {
@@ -24,6 +27,14 @@ public class ProcessorImpl implements Processor {
     private final String location;
     private final Logger logger;
 
+    /**
+     * Starts processing of articles by attempting to read news api model
+     * representation from provided location and source (URL or FILE)
+     * and assuming format source (SIMPLE or NEWSAPI)
+     *
+     * @return list of processed articles
+     * @see com.service.util.JsonUtils
+     */
     @Override
     public List<Article> process() {
         String jsonString = "";

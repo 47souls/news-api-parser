@@ -11,7 +11,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * TODO
+ * Representation of article model
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +25,13 @@ public class Article {
     private final LocalDateTime publishedAt;
 
     /**
-     * TODO
+     * Constructor for Article class. Includes mandatory params needed for creation
+     * of valid Article object
+     *
+     * @param title title
+     * @param description description
+     * @param url url
+     * @param publishedAt published date
      */
     public Article(@JsonProperty("title") String title, @JsonProperty("description") String description,
                    @JsonProperty("url") String url, @JsonProperty("publishedAt") LocalDateTime publishedAt) {

@@ -20,14 +20,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+/**
+ * Utility class used to make basic json manipulations. Those include
+ * 1) Reading json from file
+ * 2) Retrieving json for provided url
+ * 3) Convert JSON to common news api models
+ *
+ */
 @UtilityClass
 public class JsonUtils {
 
     /**
-     * TODO
+     * Reads a json from provided file
      *
-     * @param fileName LocalDateTime object to serialized
-     * @return
+     * @param fileName name of the file where json
+     * @return parsed string json
      */
     public static String readJsonFromFile(String fileName) throws IOException {
         ClassLoader classLoader = JsonUtils.class.getClassLoader();
@@ -44,10 +51,10 @@ public class JsonUtils {
     }
 
     /**
-     * TODO
+     * Does the REST api call to the provided url and retrieves it's body as a string
      *
-     * @param url
-     * @return
+     * @param url url which will be used to make a REST api call
+     * @return parsed string json
      */
     public static String readJsonFromUrl(String url) throws IOException {
         HttpGet request = new HttpGet(url);
@@ -58,10 +65,10 @@ public class JsonUtils {
     }
 
     /**
-     * TODO
+     * Converts provided json string to the news api model
      *
-     * @param jsonString
-     * @return
+     * @param jsonString json string to be parsed
+     * @return parsed news api model
      */
     public static NewsApiModel readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -70,10 +77,10 @@ public class JsonUtils {
     }
 
     /**
-     * TODO
+     * Converts provided json string to the article model
      *
-     * @param jsonString
-     * @return
+     * @param jsonString json string to be parsed
+     * @return parsed article model
      */
     public static Article readArticleModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
