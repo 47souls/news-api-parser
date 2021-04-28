@@ -54,6 +54,7 @@ public class Main {
             String url = urlEntrySet.getValue();
 
             LOGGER.info("Parsing articles using provided location " + url + "\n\n");
+
             ProcessorImpl processor = new ProcessorImpl(FILE, format, url, LOGGER);
             List<Article> articles = processor.process();
             printResults(articles, url);
