@@ -61,7 +61,7 @@ public class ProcessorImplTest {
     @Test(expected = IllegalArgumentException.class)
     public void processCalledUnknownSourceIllegalArgumentExceptionThrown_Test() throws Exception {
         // arrange
-        ProcessorImpl processor = new ProcessorImpl(URL, Format.valueOf("Unknown source"), "location", Logger.getLogger(ProcessorImplTest.class.getName()));
+        ProcessorImpl processor = new ProcessorImpl(URL, Format.valueOf("Unknown format"), "location", Logger.getLogger(ProcessorImplTest.class.getName()));
 
         // act
         processor.process();

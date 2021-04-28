@@ -7,6 +7,7 @@ import com.service.source.Source;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,23 +23,23 @@ public class ProcessorImpl implements Processor {
     private final Logger logger;
 
     @Override
-    public List<Article> process() throws IOException {
-        if (source.equals(Source.FILE)) {
-            return processFromFile(location, format);
-        } if (source.equals(Source.URL)) {
-            return processFromUrl(location, format);
+    public List<Article> process() {
+        String jsonString = "";
+
+        try {
+            if (source.equals(Source.FILE)) {
+                jsonString = readJsonFromFile(location);
+            }
+            if (source.equals(Source.URL)) {
+                jsonString = readJsonFromUrl(location);
+            }
+        } catch (Exception e) {
+            logger.warning("Unable to read json content for provided source " + source
+                    + " and format " + format + " and location " + location
+                    + ". Exception: " + e.getMessage() + "\n");
+            return Collections.emptyList();
         }
 
-        throw new IllegalArgumentException("Source " + source + " not supported");
-    }
-
-    private List<Article> processFromFile(String location, Format format) throws IOException {
-        String jsonString = readJsonFromFile(location);
-        return new ParserImpl(logger, jsonString, format).parse();
-    }
-
-    private List<Article> processFromUrl(String location, Format format) throws IOException {
-        String jsonString = readJsonFromUrl(location);
         return new ParserImpl(logger, jsonString, format).parse();
     }
 }

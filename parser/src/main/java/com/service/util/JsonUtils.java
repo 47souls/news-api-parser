@@ -1,5 +1,11 @@
 package com.service.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.service.model.Article;
+import com.service.model.NewsApiModel;
 import lombok.experimental.UtilityClass;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -34,5 +40,18 @@ public class JsonUtils {
         CloseableHttpResponse response = httpClient.execute(request);
         HttpEntity httpEntity = response.getEntity();
         return EntityUtils.toString(httpEntity);
+    }
+
+
+    public static NewsApiModel readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        return objectMapper.readValue(jsonString, new TypeReference<>() { });
+    }
+
+    public static Article readArticleModelFromJson(String jsonString) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        return objectMapper.readValue(jsonString, new TypeReference<>() { });
     }
 }

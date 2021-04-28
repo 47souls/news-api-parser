@@ -1,19 +1,20 @@
 package com.service.parser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.model.Article;
 import com.service.model.NewsApiModel;
 import com.service.source.Format;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import static com.service.util.JsonUtils.readArticleModelFromJson;
+import static com.service.util.JsonUtils.readNewsApiModelFromJson;
 
 @RequiredArgsConstructor
 public class ParserImpl implements Parser {
@@ -32,20 +33,29 @@ public class ParserImpl implements Parser {
      * @return list of valid articles
      */
     @Override
-    public List<Article> parse() throws JsonProcessingException {
-        List<Article> articles;
+    public List<Article> parse() {
+        return readArticlesFromJson(articlesJson, format)
+            .stream()
+            .filter(this::parseArticle)
+            .collect(Collectors.toList());
+    }
 
-        if (format.equals(Format.NEWSAPI)) {
-            NewsApiModel newsApiModel = readNewsApiModelFromJson(articlesJson);
-            articles = newsApiModel.getArticles();
-        } else if (format.equals(Format.SIMPLE)) {
-            Article article = readArticleModelFromJson(articlesJson);
-            articles = Collections.singletonList(article);
-        } else {
-            throw new IllegalArgumentException("Format " + format + " not supported");
+    private List<Article> readArticlesFromJson(String articlesJson, Format format) {
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            if (format.equals(Format.NEWSAPI)) {
+                NewsApiModel newsApiModel = readNewsApiModelFromJson(articlesJson);
+                articles = newsApiModel.getArticles();
+            } else if (format.equals(Format.SIMPLE)) {
+                Article article = readArticleModelFromJson(articlesJson);
+                articles = Collections.singletonList(article);
+            }
+        } catch (Exception e) {
+            logger.warning("Unable to read articles from json " + articlesJson + " for format " + format + "\n");
         }
 
-        return articles.stream().filter(this::parseArticle).collect(Collectors.toList());
+        return articles;
     }
 
     private boolean parseArticle(Article article) {
@@ -65,17 +75,5 @@ public class ParserImpl implements Parser {
             logger.info("An article with title \"" + article.getTitle() + "\" is valid\n");
             return true;
         }
-    }
-
-    private static NewsApiModel readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        return objectMapper.readValue(jsonString, new TypeReference<>() { });
-    }
-
-    private static Article readArticleModelFromJson(String jsonString) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        return objectMapper.readValue(jsonString, new TypeReference<>() { });
     }
 }
