@@ -42,21 +42,18 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
     @Override
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
                           SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeString(parseLocalDateTime(localDateTime));
+    }
 
-        String dateTime = "";
-
+    private String parseLocalDateTime(LocalDateTime localDateTime) {
         for (DateTimeFormatter dateTimeFormatter: Arrays.asList(zoneDateFormatter, simpleDateFormatter)) {
             try {
-                dateTime = dateTimeFormatter.format(localDateTime);
+                return dateTimeFormatter.format(localDateTime);
             } catch (DateTimeParseException e) {
-
+                // intentionally omitted
             }
         }
 
-        if (dateTime.isEmpty()) {
-            throw new RuntimeException("Unsupported format of localDateTime");
-        }
-
-        jsonGenerator.writeString(dateTime);
+        throw new RuntimeException("Unsupported format of localDateTime");
     }
 }
