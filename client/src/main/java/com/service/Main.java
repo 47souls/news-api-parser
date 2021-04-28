@@ -4,7 +4,6 @@ import com.service.model.Article;
 import com.service.processor.ProcessorImpl;
 import com.service.source.Format;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
