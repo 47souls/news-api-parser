@@ -6,7 +6,6 @@ import com.service.source.Format;
 import com.service.source.Source;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;

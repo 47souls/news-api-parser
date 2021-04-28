@@ -49,12 +49,12 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
             try {
                 dateTime = dateTimeFormatter.format(localDateTime);
             } catch (DateTimeParseException e) {
-                // omit
+
             }
         }
 
         if (dateTime.isEmpty()) {
-            throw new RuntimeException("Unknown format of localDateTime");
+            throw new RuntimeException("Unsupported format of localDateTime");
         }
 
         jsonGenerator.writeString(dateTime);
