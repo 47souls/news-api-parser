@@ -38,18 +38,25 @@ public class Main {
 
         // Retrieving json from url
         for (Map.Entry<Format, String> urlEntrySet: formatUrlMap.entrySet()) {
-            LOGGER.info("Parsing articles using provided location " + urlEntrySet.getValue() + "\n\n");
-            ProcessorImpl processor = new ProcessorImpl(URL, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
+            Format format = urlEntrySet.getKey();
+            String url = urlEntrySet.getValue();
+
+            LOGGER.info("Parsing articles using provided location " + url + "\n\n");
+
+            ProcessorImpl processor = new ProcessorImpl(URL, format, url, LOGGER);
             List<Article> articles = processor.process();
-            printResults(articles, urlEntrySet.getValue());
+            printResults(articles, url);
         }
 
         // Retrieving json from files
         for (Map.Entry<Format, String> urlEntrySet: formatFileMap.entrySet()) {
-            LOGGER.info("Parsing articles using provided location " + urlEntrySet.getValue() + "\n\n");
-            ProcessorImpl processor = new ProcessorImpl(FILE, urlEntrySet.getKey(), urlEntrySet.getValue(), LOGGER);
+            Format format = urlEntrySet.getKey();
+            String url = urlEntrySet.getValue();
+
+            LOGGER.info("Parsing articles using provided location " + url + "\n\n");
+            ProcessorImpl processor = new ProcessorImpl(FILE, format, url, LOGGER);
             List<Article> articles = processor.process();
-            printResults(articles, urlEntrySet.getValue());
+            printResults(articles, url);
         }
     }
 
