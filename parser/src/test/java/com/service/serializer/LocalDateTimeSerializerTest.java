@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class LocalDateTimeSerializerTest {
 
     @Test
-    public void serializeZonedDateTime_Test() throws IOException {
+    public void serialize_Test() throws IOException {
         // arrange
         String expectedIsoOffsetDateTimeString = "{\"dateTime\":\"2021-07-29T19:30:40Z\"}";
         ObjectMapper mapper = new ObjectMapper();

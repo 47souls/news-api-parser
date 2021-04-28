@@ -77,7 +77,6 @@ public class JsonUtils {
      */
     public static Article readArticleModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         return objectMapper.readValue(jsonString, new TypeReference<>() { });
     }
 }
