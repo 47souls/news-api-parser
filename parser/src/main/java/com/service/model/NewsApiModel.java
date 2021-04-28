@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * TODO
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewsApiModel {
@@ -14,6 +17,9 @@ public class NewsApiModel {
     private final int totalResults;
     private final List<Article> articles;
 
+    /**
+     * TODO
+     */
     public NewsApiModel(@JsonProperty("status") String status, @JsonProperty("totalResults") int totalResults,
                         @JsonProperty("articles") List<Article> articles) {
         this.status = status;

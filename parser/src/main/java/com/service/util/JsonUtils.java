@@ -23,6 +23,12 @@ import java.util.Objects;
 @UtilityClass
 public class JsonUtils {
 
+    /**
+     * TODO
+     *
+     * @param fileName LocalDateTime object to serialized
+     * @return
+     */
     public static String readJsonFromFile(String fileName) throws IOException {
         ClassLoader classLoader = JsonUtils.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
@@ -37,6 +43,12 @@ public class JsonUtils {
         return jsonBuilder.toString();
     }
 
+    /**
+     * TODO
+     *
+     * @param url
+     * @return
+     */
     public static String readJsonFromUrl(String url) throws IOException {
         HttpGet request = new HttpGet(url);
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -45,13 +57,24 @@ public class JsonUtils {
         return EntityUtils.toString(httpEntity);
     }
 
-
+    /**
+     * TODO
+     *
+     * @param jsonString
+     * @return
+     */
     public static NewsApiModel readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         return objectMapper.readValue(jsonString, new TypeReference<>() { });
     }
 
+    /**
+     * TODO
+     *
+     * @param jsonString
+     * @return
+     */
     public static Article readArticleModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);

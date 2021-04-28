@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 import static com.service.util.JsonUtils.readJsonFromFile;
 import static com.service.util.JsonUtils.readJsonFromUrl;
 
+/**
+ * TODO
+ */
 @RequiredArgsConstructor
 public class ProcessorImpl implements Processor {
 

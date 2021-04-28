@@ -10,6 +10,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * TODO
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Article {
@@ -21,6 +24,9 @@ public class Article {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private final LocalDateTime publishedAt;
 
+    /**
+     * TODO
+     */
     public Article(@JsonProperty("title") String title, @JsonProperty("description") String description,
                    @JsonProperty("url") String url, @JsonProperty("publishedAt") LocalDateTime publishedAt) {
         this.title = title;
