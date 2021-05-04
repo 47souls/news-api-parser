@@ -7,24 +7,21 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 /**
- * Jackson helper deserializer class. Helps to convert news api model's published date
+ * Jackson helper deserializer class. Helps to convert NEWS API model's published date
  *
  * @see StdDeserializer
  * @see DateTimeFormatter
  */
-public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
+public class LocalDateTimeZonedFormatDeserializer extends StdDeserializer<LocalDateTime> {
 
-    private DateTimeFormatter zoneDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
+    private DateTimeFormatter zonedDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     /**
      * Default constructor used by Jackson API
      */
-    public LocalDateTimeDeserializer() {
+    public LocalDateTimeZonedFormatDeserializer() {
         this(null);
     }
 
@@ -33,7 +30,7 @@ public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
      *
      * @param clazz class interface to be used in serialization
      */
-    private LocalDateTimeDeserializer(Class<?> clazz) {
+    private LocalDateTimeZonedFormatDeserializer(Class<?> clazz) {
         super(clazz);
     }
 
@@ -49,16 +46,6 @@ public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext context)
             throws IOException {
-        String date = jsonParser.getText();
-
-        for (DateTimeFormatter dateTimeFormatter: Arrays.asList(zoneDateFormatter, simpleDateFormatter)) {
-            try {
-                return LocalDateTime.parse(date, dateTimeFormatter);
-            } catch (DateTimeParseException e) {
-                // omit
-            }
-        }
-
-        return LocalDateTime.parse(date, zoneDateFormatter);
+        return LocalDateTime.parse(jsonParser.getText(), zonedDateFormatter);
     }
 }

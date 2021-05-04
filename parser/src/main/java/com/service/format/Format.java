@@ -1,4 +1,4 @@
-package com.service.source;
+package com.service.format;
 
 /**
  * Defines types of supported article format

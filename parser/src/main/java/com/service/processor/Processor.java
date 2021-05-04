@@ -1,13 +1,13 @@
 package com.service.processor;
 
 import com.service.model.Article;
-import java.io.IOException;
+
 import java.util.List;
 
 /**
- * Interface that defines a contract method for all Processor implementations
+ * Base class that defines a contract method for all Processor implementations
  */
-public interface Processor {
+public abstract class Processor<T extends Article> {
 
     /**
      * Performs general processing of articles. The details of processing
@@ -15,5 +15,5 @@ public interface Processor {
      *
      * @return a list of processed articles
      */
-    List<Article> process() throws IOException;
+    public abstract List<T> process();
 }

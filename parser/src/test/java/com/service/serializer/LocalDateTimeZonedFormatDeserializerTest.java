@@ -14,14 +14,14 @@ import java.time.Month;
 import java.util.HashMap;
 
 @RunWith(JUnit4.class)
-public class LocalDateTimeDeserializerTest {
+public class LocalDateTimeZonedFormatDeserializerTest {
 
     @Test
     public void deserialize_Test() throws IOException {
         // arrange
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
+        module.addDeserializer(LocalDateTime.class, new LocalDateTimeZonedFormatDeserializer());
         mapper.registerModule(module);
 
         // act

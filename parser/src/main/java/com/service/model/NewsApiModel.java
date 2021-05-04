@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Representation of news api model
+ * Representation of NEWS API model
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +15,7 @@ public class NewsApiModel {
 
     private final String status;
     private final int totalResults;
-    private final List<Article> articles;
+    private final List<NewsApiArticle> newsApiArticles;
 
     /**
      * Constructor for NewsApiModel class. Includes mandatory params needed for creation
@@ -23,12 +23,12 @@ public class NewsApiModel {
      *
      * @param status status
      * @param totalResults total results
-     * @param articles articles
+     * @param newsApiArticles articles
      */
     public NewsApiModel(@JsonProperty("status") String status, @JsonProperty("totalResults") int totalResults,
-                        @JsonProperty("articles") List<Article> articles) {
+                        @JsonProperty("articles") List<NewsApiArticle> newsApiArticles) {
         this.status = status;
         this.totalResults = totalResults;
-        this.articles = articles;
+        this.newsApiArticles = newsApiArticles;
     }
 }

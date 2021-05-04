@@ -3,29 +3,27 @@ package com.service.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.service.model.NewsApiArticle;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 /**
- * Jackson helper serializer class. Helps to convert news api model's published date
+ * Jackson helper serializer class. Helps to convert NEWS API model's published date
  *
- * @see com.service.model.Article
+ * @see NewsApiArticle
  * @see StdSerializer
  * @see DateTimeFormatter
  */
-public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
+public class LocalDateTimeSimpleFormatSerializer extends StdSerializer<LocalDateTime> {
 
-    private DateTimeFormatter zoneDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
     private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API
      */
-    public LocalDateTimeSerializer() {
+    public LocalDateTimeSimpleFormatSerializer() {
         this(null);
     }
 
@@ -34,7 +32,7 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
      *
      * @param clazz class interface to be used in serialization
      */
-    public LocalDateTimeSerializer(Class clazz) {
+    public LocalDateTimeSimpleFormatSerializer(Class clazz) {
         super(clazz);
     }
 
@@ -49,18 +47,6 @@ public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
     @Override
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
                           SerializerProvider serializerProvider) throws IOException {
-        jsonGenerator.writeString(parseLocalDateTime(localDateTime));
-    }
-
-    private String parseLocalDateTime(LocalDateTime localDateTime) {
-        for (DateTimeFormatter dateTimeFormatter: Arrays.asList(zoneDateFormatter, simpleDateFormatter)) {
-            try {
-                return dateTimeFormatter.format(localDateTime);
-            } catch (DateTimeParseException e) {
-                // intentionally omitted
-            }
-        }
-
-        throw new RuntimeException("Unsupported format of localDateTime");
+        jsonGenerator.writeString(simpleDateFormatter.format(localDateTime));
     }
 }
