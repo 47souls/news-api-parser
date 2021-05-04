@@ -29,9 +29,8 @@ public class NewsApiParser extends Parser<NewsApiArticle> {
         this.logger = logger;
     }
 
-    /** TODO:
-     * Performs parsing of articles. The details of parsing
-     * is up to decide for implementations
+    /**
+     * Performs parsing of articles assuming NEWS API model
      *
      * @return a list of parsed articles
      */

@@ -27,12 +27,12 @@ public class SimpleApiParser extends Parser<SimpleApiArticle> {
         this.logger = logger;
     }
 
-    /** TODO:
-     * Performs parsing of articles. The details of parsing
-     * is up to decide for implementations
+    /**
+     * Performs parsing of articles assuming SIMPLE API model
      *
      * @return a list of parsed articles
      */
+    @Override
     public List<SimpleApiArticle> parse() {
         return readArticlesFromJson(articlesJson)
             .stream()
@@ -48,20 +48,11 @@ public class SimpleApiParser extends Parser<SimpleApiArticle> {
      */
     protected List<SimpleApiArticle> readArticlesFromJson(String articlesJson) {
         try {
-            return Collections.singletonList(readArticleModelFromJson(articlesJson));
+            return Collections.singletonList(new ObjectMapper().readerFor(SimpleApiArticle.class)
+                    .readValue(articlesJson));
         } catch (JsonProcessingException e) {
             logger.warning("Unable to read articles from json " + articlesJson + " for format SIMPLE API\n");
         }
         return Collections.emptyList();
-    }
-
-    /**
-     * Converts provided json string to the article model
-     *
-     * @param jsonString json string to be parsed
-     * @return parsed article model
-     */
-    private static SimpleApiArticle readArticleModelFromJson(String jsonString) throws JsonProcessingException {
-        return new ObjectMapper().readerFor(SimpleApiArticle.class).readValue(jsonString);
     }
 }

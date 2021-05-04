@@ -1,17 +1,15 @@
 package com.service.parser;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.model.Article;
 import lombok.Setter;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+/**
+ * Base class that defines a contract method for all Parser implementations
+ */
 public abstract class Parser<T extends Article> {
 
     private final Logger logger;
@@ -23,19 +21,15 @@ public abstract class Parser<T extends Article> {
         this.logger = logger;
     }
 
+    /**
+     * Performs parsing of articles. The details of parsing
+     * is up to decide for implementations
+     *
+     * @return a list of parsed articles
+     */
     public abstract List<T> parse();
 
-    /**
-     * Converts provided json string to the NEWS API model
-     *
-     * @param jsonString json string to be parsed
-     * @return parsed NEWS API model
-     */
-    private T readArticleModelFromJson(String jsonString) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        return objectMapper.readValue(jsonString, new TypeReference<>() { });
-    }
+    protected abstract List<T> readArticlesFromJson(String articlesJson);
 
     /**
      * Checks article on the subject of validity. Article is considered to be

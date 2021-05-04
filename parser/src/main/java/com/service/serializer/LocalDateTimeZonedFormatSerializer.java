@@ -3,7 +3,6 @@ package com.service.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.service.model.NewsApiArticle;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -12,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Jackson helper serializer class. Helps to convert NEWS API model's published date
  *
- * @see NewsApiArticle
  * @see StdSerializer
  * @see DateTimeFormatter
  */

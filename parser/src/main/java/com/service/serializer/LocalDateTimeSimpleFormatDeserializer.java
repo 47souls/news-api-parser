@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Jackson helper deserializer class. Helps to convert NEWS API model's published date
+ * Jackson helper deserializer class. Helps to convert SIMPLE API model's published date
  *
  * @see StdDeserializer
  * @see DateTimeFormatter

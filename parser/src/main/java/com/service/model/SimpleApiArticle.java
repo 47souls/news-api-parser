@@ -25,8 +25,8 @@ public class SimpleApiArticle extends Article {
     private final LocalDateTime publishedAt;
 
     /**
-     * Constructor for NEWS API Article class. Includes mandatory params needed for creation
-     * of valid Article object
+     * Constructor for SIMPLE API Article class. Includes mandatory params needed for creation
+     * of valid SIMPLE API Article object
      *
      * @param title title
      * @param description description

@@ -26,7 +26,7 @@ public class NewsApiArticle extends Article {
 
     /**
      * Constructor for NEWS API Article class. Includes mandatory params needed for creation
-     * of valid Article object
+     * of valid NEWS API Article object
      *
      * @param title title
      * @param description description

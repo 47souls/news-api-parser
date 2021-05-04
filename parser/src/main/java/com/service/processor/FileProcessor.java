@@ -13,17 +13,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+/**
+ * Implementation class for Processor interface that defines the logic to be able to retrieve
+ * news api articles from provided file
+ *
+ * @see Processor
+ */
 @RequiredArgsConstructor
-public class FileProcessor <T extends Article> extends Processor<T> {
+public class FileProcessor<T extends Article> extends Processor<T> {
 
     private final String location;
     private final Logger logger;
     private final Parser<T> parser;
 
     /**
-     * TODO: comments update
-     * Performs general processing of articles. The details of processing
-     * is up to decide for implementations
+     * Defines logic to retrieve articles from the source FILE
      *
      * @return a list of processed articles
      */
