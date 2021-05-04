@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class LocalDateTimeSimpleFormatDeserializer extends StdDeserializer<LocalDateTime> {
 
-    private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-M-d H:m:s[.SSSSSS]");
+    private DateTimeFormatter simpleDateFormatter = DateTimeFormatter.ofPattern("y-MM-d HH:mm:ss[.SSSSSS]");
 
     /**
      * Default constructor used by Jackson API

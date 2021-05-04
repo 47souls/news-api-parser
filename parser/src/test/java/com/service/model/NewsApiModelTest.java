@@ -21,12 +21,10 @@ public class NewsApiModelTest {
         List<NewsApiArticle> newsApiArticleList = Collections.singletonList(new NewsApiArticle("Title", "Description", "http://example.com", LocalDateTime.of(2021, Month.JULY, 29, 19, 30, 40)));
 
         // act
-        // TODO:
-//        NewsApiModel newsApiModel = new NewsApiModel(status, totalResult, newsApiArticleList);
+        NewsApiModel newsApiModel = new NewsApiModel(status, totalResult, newsApiArticleList);
 
-        // assert
-//        Assert.assertEquals(newsApiModel.getStatus(), status);
-//        Assert.assertEquals(newsApiModel.getTotalResults(), totalResult);
-//        Assert.assertEquals(newsApiModel.getNewsApiArticles(), newsApiArticleList);
+        Assert.assertEquals(newsApiModel.getStatus(), status);
+        Assert.assertEquals(newsApiModel.getTotalResults(), totalResult);
+        Assert.assertEquals(newsApiModel.getNewsApiArticles(), newsApiArticleList);
     }
 }
