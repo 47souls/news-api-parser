@@ -24,7 +24,7 @@ public class NewsApiParser extends Parser<NewsApiArticle> {
     @Setter
     private String articlesJson;
 
-    NewsApiParser(Logger logger) {
+    public NewsApiParser(Logger logger) {
         super(logger);
         this.logger = logger;
     }
@@ -63,7 +63,7 @@ public class NewsApiParser extends Parser<NewsApiArticle> {
      * @param jsonString json string to be parsed
      * @return parsed NEWS API model
      */
-    private static List<NewsApiArticle> readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
+    private List<NewsApiArticle> readNewsApiModelFromJson(String jsonString) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         NewsApiModel newsApiModel = new ObjectMapper().readerFor(NewsApiModel.class).readValue(jsonString);

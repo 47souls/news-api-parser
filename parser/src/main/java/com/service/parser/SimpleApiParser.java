@@ -22,7 +22,7 @@ public class SimpleApiParser extends Parser<SimpleApiArticle> {
     @Setter
     private String articlesJson;
 
-    SimpleApiParser(Logger logger) {
+    public SimpleApiParser(Logger logger) {
         super(logger);
         this.logger = logger;
     }

@@ -2,7 +2,7 @@ package com.service.processor;
 
 import com.service.model.Article;
 import com.service.parser.Parser;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @see Processor
  */
-@RequiredArgsConstructor
+@Data
 public class FileProcessor<T extends Article> extends Processor<T> {
 
     private final String location;
@@ -51,7 +51,7 @@ public class FileProcessor<T extends Article> extends Processor<T> {
      * @param fileName name of the file where json
      * @return parsed string json
      */
-    private static String readJsonFromFile(String fileName) throws IOException {
+    private String readJsonFromFile(String fileName) throws IOException {
         ClassLoader classLoader = FileProcessor.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));

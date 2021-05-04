@@ -52,7 +52,7 @@ public class URLProcessor<T extends Article> extends Processor<T> {
      * @param url url which will be used to make a REST api call
      * @return parsed string json
      */
-    private static String readJsonFromUrl(String url) throws IOException {
+    private String readJsonFromUrl(String url) throws IOException {
         URL targetUrl = new URL(url);
         HttpURLConnection con = (HttpURLConnection) targetUrl.openConnection();
         con.setRequestMethod("GET");
