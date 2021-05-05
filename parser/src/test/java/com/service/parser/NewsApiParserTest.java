@@ -32,7 +32,7 @@ public class NewsApiParserTest {
 
     @Before
     public void init() {
-        logger = Logger.getLogger(ParserImplTest.class.getName());
+        logger = Logger.getLogger(NewsApiParserTest.class.getName());
         logger.setUseParentHandlers(false);
         testLogHandler = new TestLogHandler();
         logger.addHandler(testLogHandler);

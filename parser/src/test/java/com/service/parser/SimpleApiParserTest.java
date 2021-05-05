@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import static org.powermock.api.mockito.PowerMockito.spy;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(NewsApiParser.class)
+@PrepareForTest(SimpleApiParser.class)
 public class SimpleApiParserTest {
 
     private TestLogHandler testLogHandler;
@@ -31,7 +31,7 @@ public class SimpleApiParserTest {
 
     @Before
     public void init() {
-        logger = Logger.getLogger(ParserImplTest.class.getName());
+        logger = Logger.getLogger(SimpleApiParserTest.class.getName());
         logger.setUseParentHandlers(false);
         testLogHandler = new TestLogHandler();
         logger.addHandler(testLogHandler);
@@ -72,7 +72,7 @@ public class SimpleApiParserTest {
         // arrange
         String articlesJson = "TestArticlesJson";
 
-        NewsApiParser parserImpl = spy(new NewsApiParser(logger));
+        SimpleApiParser parserImpl = spy(new SimpleApiParser(logger));
 
         PowerMockito.doThrow(new Exception("Fail")).when(parserImpl, "readArticlesFromJson", articlesJson);
 
@@ -81,7 +81,7 @@ public class SimpleApiParserTest {
     }
 
     @Test
-    public void readNewsApiModelFromJson_Test() throws Exception {
+    public void readSimpleApiModelFromJson_Test() throws Exception {
         // arrange
         String simpleApiJson = "{\n" +
                 "  \"description\": \"The coronavirus\",\n" +
